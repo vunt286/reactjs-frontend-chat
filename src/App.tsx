@@ -7,6 +7,7 @@ import AuthPage from "./pages/Auth/AuthPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/Home/HomePage";
+import TestPage from "./pages/Test/Test";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   const storedUser = localStorage.getItem("user");
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<AuthPage />} />
+          {/* <Route path="/test" element={<TestPage />} /> */}
           <Route
             path="/home"
             element={

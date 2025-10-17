@@ -6,6 +6,7 @@ import "./ChatPage.css";
 import { stringToColor } from "../../common/utils";
 import { socket } from "../../socket/socket";
 import { useAuth } from "../../context/AuthContext";
+import ChatBox from "../../components/ChatWindow/ChatBox";
 
 type Member = { _id: string; username: string; email?: string };
 type LastMessage = { _id: string; conversationId: string; senderId: string; text: string; createdAt: string };
@@ -29,6 +30,8 @@ export default function ChatPage() {
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [user, setUser] = useState<User | null>(null);
+  const [modeCreateChat, setModeCreateChat] = useState(false);
+  const [toUser, setToUser] = useState("");
 
 
   const token = localStorage.getItem("token");
@@ -111,75 +114,31 @@ export default function ChatPage() {
     );
   };
 
+  const onNewChat = () => {
+    setModeCreateChat(true);
+  }
+
+  const onCancel = () => {
+    setModeCreateChat(false);
+  }
+
   if (!user) return null;
 
   return (
-    <div className="chat-page">
+    <div className="chat-app">
       <ChatList
         conversations={conversations}
         selectedId={selectedConversation?._id || null}
         onSelect={id => setSelectedConversation(conversations.find(c => c._id === id) || null)}
         currentUserId={user._id}
         username={user.username}
+        handleNewChat={onNewChat}
         onLogout={() => {
           logout();
         }}
       />
-      <div className="chat-area">
-        {selectedConversation ? (
-          <>
-            <div className="chat-header">
-              {selectedConversation && (
-                <div className="chat-header-info">
-                  {/* Nếu private chat, lấy người khác là avatar */}
-                  {selectedConversation.type === "private" ? (
-                    <div className="chat-user">
-                      <div className="avatar" style={{
-                        backgroundColor: stringToColor(selectedConversation.members
-                          .find((m) => m._id !== user._id)
-                          ?.username || '')
-                      }}>
-                        {selectedConversation.members
-                          .find((m) => m._id !== user._id)
-                          ?.username.charAt(0)
-                          .toUpperCase()}
-                      </div>
-                      <span>
-                        {selectedConversation.members.find((m) => m._id !== user._id)?.username}
-                      </span>
-                    </div>
-                  ) : (
-                    /* Nếu group chat */
-                    <div className="chat-group">
-                      <div className="group-avatars">
-                        {selectedConversation.members.slice(0, 3).map((m, idx) => (
-                          <div
-                            key={m._id}
-                            className="avatar group"
-                            style={{
-                              backgroundColor: stringToColor(m.username),
-                              zIndex: 10 - idx,
-                              left: idx * 16, // đẩy ngang từng avatar
-                            }}
-                          >
-                            {m.username.charAt(0).toUpperCase()}
-                          </div>
-                        ))}
-                      </div>
-                      <span className="group-name">{selectedConversation.name}</span>
-                    </div>
-                  )}
-                </div>
-              )}
-
-            </div>
-            <MessageList messages={messages} currentUserId={user._id} />
-            <ChatInput onSend={handleSend} />
-          </>
-        ) : (
-          <div className="no-chat">Chọn cuộc trò chuyện để bắt đầu</div>
-        )}
-      </div>
+      {/* CHAT WINDOW */}
+      <ChatBox messages={messages} currentUser={user} selectedConversation={selectedConversation}  onSend={handleSend}/>
     </div>
   );
 }

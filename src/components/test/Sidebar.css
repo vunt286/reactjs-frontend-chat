@@ -1,0 +1,66 @@
+.sidebar {
+    width: 260px;
+    background-color: #fafafa;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .logo {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 16px;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+  }
+  
+  .menu button {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  
+  .menu button:hover {
+    background-color: #ffe6f0;
+  }
+  
+  .chat-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 12px;
+  }
+  
+  .chat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 16px;
+    align-items: center;
+    border-left: 4px solid transparent;
+    cursor: pointer;
+  }
+  
+  .chat-item:hover {
+    background-color: #fce7ef;
+  }
+  
+  .chat-item.unread {
+    background-color: #fce7ef;
+  }
+  
+  .chat-badge {
+    background-color: #ff5c8a;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
+  }
+  

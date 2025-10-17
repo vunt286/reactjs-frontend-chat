@@ -31,7 +31,7 @@ body, html, #root { margin: 0; padding: 0; height: 100%; font-family: "Segoe UI"
 .user-meta { min-width: 0; }
 .user-meta .username { font-weight: 700; }
 .user-meta .status { font-size: 13px; color: #5c6b6a; margin-top: 4px; }
-
+.username { font-weight: 700; }
 /* menu */
 .menu { display: flex; flex-direction: column; gap: 6px; padding: 8px 8px 12px 8px; }
 .menu button {
