@@ -1,6 +1,6 @@
 import React from "react";
-import "./ChatList.css";
-import { stringToColor } from "../../common/utils";
+import "./Sidebar.css";
+import { NavLink } from "react-router-dom";
 
 type Member = { _id: string; username: string; email?: string };
 type LastMessage = { _id: string; conversationId: string; senderId: string; text: string; createdAt: string };
@@ -12,17 +12,15 @@ type Props = {
   onSelect: (id: string) => void;
   currentUserId: string;
   username: string;
-  handleNewChat: () => void;
   onLogout: () => void;
 };
 
-export default function ChatList({
+export default function Sidebar({
   conversations,
   selectedId,
   onSelect,
   currentUserId,
   username,
-  handleNewChat,
   onLogout,
 }: Props) {
   return (
@@ -45,12 +43,12 @@ export default function ChatList({
         </div>
 
         <nav className="menu">
-          <button>🏠 Trang chủ</button>
-          <button>👥 Bạn bè</button>
-          <button>🤝 Lời mời kết bạn</button>
-          <button className="active">💬 Tin nhắn</button>
-          <button>📋 Nhiệm vụ</button>
-          <button>❓ Hỗ trợ</button>
+          <NavLink to="main" className="menu-item">🏠 Trang chủ</NavLink>
+          <NavLink to="friends" className="menu-item">👥 Bạn bè</NavLink>
+          <NavLink to="chat" className="menu-item">💬 Tin nhắn</NavLink>
+          <NavLink to="friends-requests" className="menu-item">🤝 Lời mời kết bạn</NavLink>
+          <NavLink to="/tasks" className="menu-item">📋 Nhiệm vụ</NavLink>
+          <NavLink to="/help" className="menu-item">❓ Hỗ trợ</NavLink>
         </nav>
       </div>
 
@@ -59,7 +57,7 @@ export default function ChatList({
       <div className="messages-section">
         <div className="messages-header">
           <div className="messages-title">Tin nhắn</div>
-          <button className="create-btn" onClick={handleNewChat}>+</button>
+          <button className="create-btn">+</button>
         </div>
 
         {conversations.length === 0 && <div className="chat-item">

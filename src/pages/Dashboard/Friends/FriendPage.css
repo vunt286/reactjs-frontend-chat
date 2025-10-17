@@ -1,0 +1,169 @@
+.friend-page {
+  padding: 24px 40px;
+  background: #fff6f9;
+  min-height: 100vh;
+}
+
+/* 🔹 Header */
+.friend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.friend-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.friend-header p {
+  color: #666;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid #f2c2d3;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  color: #d6336c;
+  transition: 0.2s;
+}
+
+.icon-btn.active,
+.icon-btn:hover {
+  background: #ffd9e8;
+}
+
+/* 🔸 Friend Cards */
+.friend-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.friend-list.list {
+  flex-direction: column;
+}
+
+.friend-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 230px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+
+.friend-list.list .friend-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+}
+
+.friend-card:hover {
+  transform: translateY(-3px);
+}
+
+.friend-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-card h4 {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.friend-card p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.online {
+  color: #28a745;
+}
+
+.offline {
+  color: #aaa;
+}
+
+.subjects {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.subjects span {
+  background: #ffe0eb;
+  color: #d6336c;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* 🔘 Buttons */
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chat-btn {
+  background: #ff4d94;
+  color: white;
+}
+
+.add-btn {
+  background: #ff80b5;
+  color: white;
+}
+
+.pending-btn {
+  background: #ccc;
+  color: white;
+  cursor: not-allowed;
+}
+
+.request-btns {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.accept-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.decline-btn {
+  background: #ff4d4d;
+  color: white;
+}
+
+h3 {
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}

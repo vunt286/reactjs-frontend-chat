@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ChatList from "../../components/Sidebar/ChatList";
-import MessageList from "../../components/ChatWindow/MessageList";
-import ChatInput from "../../components/ChatInput";
+import ChatList from "../../../components/Sidebar/Sidebar";
 import "./ChatPage.css";
-import { stringToColor } from "../../common/utils";
-import { socket } from "../../socket/socket";
-import { useAuth } from "../../context/AuthContext";
-import ChatBox from "../../components/ChatWindow/ChatBox";
+import { socket } from "../../../socket/socket";
+import { useAuth } from "../../../context/AuthContext";
+import ChatBox from "../../../components/ChatWindow/ChatBox";
 
 type Member = { _id: string; username: string; email?: string };
 type LastMessage = { _id: string; conversationId: string; senderId: string; text: string; createdAt: string };
@@ -30,8 +27,6 @@ export default function ChatPage() {
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [user, setUser] = useState<User | null>(null);
-  const [modeCreateChat, setModeCreateChat] = useState(false);
-  const [toUser, setToUser] = useState("");
 
 
   const token = localStorage.getItem("token");
@@ -114,29 +109,10 @@ export default function ChatPage() {
     );
   };
 
-  const onNewChat = () => {
-    setModeCreateChat(true);
-  }
-
-  const onCancel = () => {
-    setModeCreateChat(false);
-  }
-
   if (!user) return null;
 
   return (
     <div className="chat-app">
-      <ChatList
-        conversations={conversations}
-        selectedId={selectedConversation?._id || null}
-        onSelect={id => setSelectedConversation(conversations.find(c => c._id === id) || null)}
-        currentUserId={user._id}
-        username={user.username}
-        handleNewChat={onNewChat}
-        onLogout={() => {
-          logout();
-        }}
-      />
       {/* CHAT WINDOW */}
       <ChatBox messages={messages} currentUser={user} selectedConversation={selectedConversation}  onSend={handleSend}/>
     </div>

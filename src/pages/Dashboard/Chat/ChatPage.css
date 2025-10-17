@@ -176,3 +176,112 @@ body, html, #root { margin: 0; padding: 0; height: 100%; font-family: "Segoe UI"
 @media (max-width: 900px) {
   .sidebar { width: 260px; }
 }
+
+/* ======newchat-mode===== */
+.newchat-mode {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f6f7;
+  color: #1c1e21;
+}
+
+.newchat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 14px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: #0084ff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.newchat-input {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+  gap: 8px;
+}
+
+.multi-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px;
+  flex: 1;
+  min-height: 38px;
+}
+
+.multi-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 80px;
+  font-size: 14px;
+}
+
+.user-tag {
+  background-color: #e7f3ff;
+  color: #0084ff;
+  border-radius: 12px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.user-tag span {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.suggestion-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 16px;
+}
+
+.suggestion-list li {
+  background: white;
+  padding: 8px 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-top: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.suggestion-list li:hover {
+  background: #f0f2f5;
+}
+
+.newchat-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.profile-btn {
+  margin-top: 10px;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.profile-btn:hover {
+  background-color: #0071e6;
+}

@@ -22,7 +22,7 @@ type Props = {
     onSend: (text: string) => void;
 };
 
-export default function ChatBox({ messages, currentUser, selectedConversation, onSend}: Props) {
+export default function ChatBox({ messages, currentUser, selectedConversation, onSend }: Props) {
     const listRef = useRef<HTMLDivElement>(null);
     const [nameChat, setNameChat] = useState<string | null>(null);
 
@@ -50,50 +50,55 @@ export default function ChatBox({ messages, currentUser, selectedConversation, o
 
     return (
         <main className="chat-window">
-            <div className="chat-header">
-                <div className="user">
-                    <img
-                        src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
-                        alt="avatar"
-                        className="avatar"
-                    />
-                    <div>
-                        <div className="username">{nameChat}</div>
-                        <div className="status">Đang hoạt động</div>
+            {!selectedConversation && (<>
+                <h3>Chọn tin nhắn để chat</h3>
+            </>)}
+            {selectedConversation && (<>
+                <div className="chat-header">
+                    <div className="user">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
+                            alt="avatar"
+                            className="avatar"
+                        />
+                        <div>
+                            <div className="username">{nameChat}</div>
+                            <div className="status">Đang hoạt động</div>
+                        </div>
+                    </div>
+
+                    <div className="header-actions">
+                        <button className="icon-btn">🔍</button>
+                        <button className="icon-btn">📞</button>
+                        <button className="icon-btn">⋮</button>
                     </div>
                 </div>
 
-                <div className="header-actions">
-                    <button className="icon-btn">🔍</button>
-                    <button className="icon-btn">📞</button>
-                    <button className="icon-btn">⋮</button>
+                <div className="chat-body" ref={listRef}>
+                    {messages.length === 0 && (
+                        <div className="no-message">Chưa có tin nhắn nào</div>
+                    )}
+                    {messages.map((msg, idx) => {
+                        const next = messages[idx + 1];
+                        const prev = messages[idx - 1];
+                        const isFirstInGroup = !prev || prev.senderId._id !== msg.senderId._id;
+                        const isLastInGroup = !next || next.senderId._id !== msg.senderId._id;
+                        const isOwn = msg.senderId._id === currentUser._id;
+                        return (
+                            <MessageBubble
+                                key={msg._id}
+                                text={msg.text}
+                                isOwn={isOwn}
+                                sender={isFirstInGroup ? msg.senderId : undefined}
+                                createdAt={isLastInGroup ? msg.createdAt : undefined} // timestamp chỉ hiện ở cuối nhóm
+                                isFirstInGroup={isFirstInGroup}
+                            />
+                        );
+                    })}
                 </div>
-            </div>
 
-            <div className="chat-body" ref={listRef}>
-                {messages.length === 0 && (
-                    <div className="no-message">Chưa có tin nhắn nào</div>
-                )}
-                {messages.map((msg, idx) => {
-                    const next = messages[idx + 1];
-                    const prev = messages[idx - 1];
-                    const isFirstInGroup = !prev || prev.senderId._id !== msg.senderId._id;
-                    const isLastInGroup = !next || next.senderId._id !== msg.senderId._id;
-                    const isOwn = msg.senderId._id === currentUser._id;
-                    return (
-                        <MessageBubble
-                            key={msg._id}
-                            text={msg.text}
-                            isOwn={isOwn}
-                            sender={isFirstInGroup ? msg.senderId : undefined}
-                            createdAt={isLastInGroup ? msg.createdAt : undefined} // timestamp chỉ hiện ở cuối nhóm
-                            isFirstInGroup={isFirstInGroup}
-                        />
-                    );
-                })}
-            </div>
-
-            <InputChat  onSend={onSend} />
+                <InputChat onSend={onSend} />
+            </>)}
         </main>
     );
 }

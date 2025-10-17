@@ -1,5 +1,4 @@
 import React, { JSX, useEffect, useState } from "react";
-import ChatPage from "./pages/Chat/ChatPage";
 import { socket } from "./socket/socket";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
@@ -8,11 +7,15 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/Home/HomePage";
 import TestPage from "./pages/Test/Test";
+import DashboardPage from "./pages/Dashboard/DashboardPage";
+import MainPage from "./pages/Dashboard/Friends/FriendPage";
+import ChatPage from "./pages/Dashboard/Chat/ChatPage";
+import FriendsPage from "./pages/Dashboard/Friends/FriendPage";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   const storedUser = localStorage.getItem("user");
   console.log("user------------home", storedUser);
-  
+
   return storedUser ? children : <Navigate to="/auth" replace />;
 };
 
@@ -30,7 +33,7 @@ function App() {
 
     socket.on("connect", () => {
       console.log("✅ Connected to server:", socket.id);
-      
+
     });
 
     socket.on("disconnect", () => {
@@ -50,14 +53,12 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<AuthPage />} />
           {/* <Route path="/test" element={<TestPage />} /> */}
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute>
-                <ChatPage />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
+            <Route path="main" element={<MainPage />} />
+            <Route path="chat" element={<ChatPage />} />
+            <Route path="friends" element={<FriendsPage />} />
+            <Route index element={<Navigate to="main" />} />
+          </Route>
         </Routes>
         <ToastContainer position="top-center" autoClose={2000} theme="colored" />
       </Router>

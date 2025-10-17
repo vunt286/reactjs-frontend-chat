@@ -84,7 +84,7 @@ export default function AuthPage() {
                 login(data.user);
                 toast.success("✅ Đăng nhập thành công!");
                 setTimeout(() => {
-                   window.location.href = "/home";
+                   window.location.href = "/dashboard";
                 }, 1000);
             }
         } catch (err: any) {

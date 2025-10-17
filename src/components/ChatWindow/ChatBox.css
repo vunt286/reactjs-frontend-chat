@@ -40,6 +40,14 @@ body, html, #root { margin: 0; padding: 0; height: 100%; font-family: "Segoe UI"
 .menu button:hover { background: #fff0f6; color: #d6336c; }
 .menu button.active { background: #ffd9e8; color: #d6336c; font-weight: 700; }
 
+.menu button a {
+  background: none; border: none; text-align: left; padding: 10px 14px; font-size: 15px; cursor: pointer; border-radius: 8px;
+  text-decoration: none;
+  color: #1c1e21;
+}
+
+.menu button a.active { background: #ffd9e8; color: #d6336c; font-weight: 700; width: 100%; }
+
 /* === messages section header with create btn === */
 .messages-section {
   border-top: 1px solid #f0e6eb;
