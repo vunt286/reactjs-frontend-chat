@@ -1,0 +1,14 @@
+.message-list {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f2f5;
+}
+
+.no-message {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}

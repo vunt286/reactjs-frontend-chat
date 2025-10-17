@@ -1,0 +1,90 @@
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2px;
+}
+
+.message-row.own {
+  justify-content: flex-end;
+}
+
+.message-row.other {
+  justify-content: flex-start;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #1877f2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin: 0 8px;
+}
+
+.avatar.own {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+.message-bubble-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+}
+
+.message-bubble-wrapper.continued {
+  margin-left: 52px; /* tránh chạm avatar bên trái */
+  margin-right: 44px; /* tránh chạm avatar bên phải nếu own */
+}
+
+.sender-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.bubble {
+  padding: 10px 14px;
+  word-wrap: break-word;
+  font-size: 14px;
+  margin-bottom: 2px;
+  border-radius: 20px;
+}
+
+.message-row.own .bubble {
+  background-color: #1877f2;
+  color: #fff;
+}
+
+.message-row.other .bubble {
+  background-color: #e4e6eb;
+  color: #000;
+}
+
+.timestamp {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+  align-self: flex-end;
+}
+
+.message-list {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f2f5;
+}
+
+.no-message {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
